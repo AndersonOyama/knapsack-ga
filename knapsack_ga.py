@@ -15,7 +15,7 @@ def extract_best(population):
 def mutation(children_chromosomes):
   for chromosomes in children_chromosomes:
     mutation_probability = random.uniform(0, 1)
-    if mutation_probability < PROB_UNIVERSAL:
+    if mutation_probability < 0.1:
       mutation_point = random.randint(0, num_items-1)
       if chromosomes[mutation_point] == 0:
         chromosomes[mutation_point] = 1
@@ -28,7 +28,7 @@ def crossover(parents_chromosomes):
   children_chromosomes = []
   num_couples = int(len(parents_chromosomes) / 2)
   for i in range(num_couples):
-    parent1 = 2*i
+    parent1 = 2*i         
     parent2 = 2*i + 1
     crossover_point = random.randint(1, num_items-1)
     child1 = np.append(parents_chromosomes[parent1][:crossover_point],
@@ -56,9 +56,9 @@ def select_parents(population, number_parents):
   num_probability = len(fitness_items_probability)
 
   for i in range(1, num_probability):
-    fitness_items_probability[i] += fitness_items_probability[i-1]
+    fitness_items_probability[i] += fitness_items_probability[i-1] 
   fitness_items_probability[num_probability-1] = 1
-
+  
   for_mapping = np.argsort(fitness_items)[::-1]
 
   parent_indexes = []
@@ -72,7 +72,7 @@ def select_parents(population, number_parents):
     parents_chromosomes.append(population[for_mapping[parent]])
 
   return parents_chromosomes
-
+      
 
 def next_population(population):
   parents_chromosomes = select_parents(population, len(population)/2)
@@ -94,7 +94,7 @@ def fitness(chromosome):
 
 def is_valid_chromosome(chromosome):
   total_weight = np.dot(chromosome, weights)
-  return total_weight < capacity
+  return total_weight < capacity    
 
 def initial_population(n):
   population = []
@@ -106,6 +106,8 @@ def initial_population(n):
 
 parser = argparse.ArgumentParser(description='Get file directory')
 parser.add_argument('file_dir', help='file directory', type=str)
+parser.add_argument('-i', dest='iterations', type=int)
+parser.add_argument('-p', dest='population', type=int)
 args = parser.parse_args()
 
 with open(args.file_dir, 'r') as f:
@@ -125,19 +127,16 @@ for line in lines:
   values.append(float(value))
   weights.append(float(weight))
 
-iterations = 1000
+iterations = args.iterations
 BEST_VALUE_GLOBAL = 0
 BEST_CHROMOSOME_GLOBAL = []
-BEST_ITERATION = 0
-PROB_UNIVERSAL = 0
 
-population = initial_population(20)
+population = initial_population(args.population)
 for i in range(iterations):
   best_value, best_chromosome = extract_best(population)
   if best_value > BEST_VALUE_GLOBAL:
     BEST_CHROMOSOME_GLOBAL = best_chromosome
     BEST_VALUE_GLOBAL = best_value
-    BEST_ITERATION = i
-  print('\n{}º iteration\nBest Value: {}\tChromosome: {}'.format(i+1, BEST_VALUE_GLOBAL, BEST_CHROMOSOME_GLOBAL))
   population = next_population(population)
-print("\bBest iteration: {}\t Best value: {}".format(BEST_ITERATION, BEST_VALUE_GLOBAL))
+
+print('{} {} {}'.format(args.file_dir, iterations, BEST_VALUE_GLOBAL))
