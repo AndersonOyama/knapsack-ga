@@ -1,0 +1,57 @@
+./low-dimensional/f10_l-d_kp_20_879
+RECURSIVO: 1025
+TOP DOWN: 1025
+BOTTOM UP: 1025
+
+
+./low-dimensional/f1_l-d_kp_10_269
+RECURSIVO: 295
+TOP DOWN: 295
+BOTTOM UP: 295
+
+
+./low-dimensional/f2_l-d_kp_20_878
+RECURSIVO: 1024
+TOP DOWN: 1024
+BOTTOM UP: 1024
+
+
+./low-dimensional/f3_l-d_kp_4_20
+RECURSIVO: 35
+TOP DOWN: 35
+BOTTOM UP: 35
+
+
+./low-dimensional/f4_l-d_kp_4_11
+RECURSIVO: 23
+TOP DOWN: 23
+BOTTOM UP: 23
+
+
+./low-dimensional/f5_l-d_kp_15_375
+
+
+./low-dimensional/f6_l-d_kp_10_60
+RECURSIVO: 52
+TOP DOWN: 52
+BOTTOM UP: 52
+
+
+./low-dimensional/f7_l-d_kp_7_50
+RECURSIVO: 107
+TOP DOWN: 107
+BOTTOM UP: 107
+
+
+./low-dimensional/f8_l-d_kp_23_10000
+RECURSIVO: 9767
+TOP DOWN: 9767
+BOTTOM UP: 9767
+
+
+./low-dimensional/f9_l-d_kp_5_80
+RECURSIVO: 130
+TOP DOWN: 130
+BOTTOM UP: 130
+
+
